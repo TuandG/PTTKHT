@@ -54,6 +54,7 @@
 
 <a href="gdTimKiemTaiLieu766.jsp" class="button">Tìm kiếm tài liệu</a>
 <a href="#" class="button">Đăng ký thẻ đọc trực tuyến</a>
+<a href="/libman/view/gdDangNhap766.jsp" class="button" style="background-color: red;">Đăng Xuất</a>
 
 </body>
 </html>

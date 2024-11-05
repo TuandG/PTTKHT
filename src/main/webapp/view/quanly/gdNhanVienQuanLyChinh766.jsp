@@ -50,5 +50,6 @@
 <body>
 <h1>Trang Chủ</h1>
 <a href="gdXemThongKe766.jsp" class="button-container">Xem thống kê</a>
+<a href="/libman/view/gdDangNhap766.jsp" class="button-container" style="background-color: red; margin-top: 20px;">Đăng Xuất</a>
 </body>
 </html>

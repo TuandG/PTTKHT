@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PhieuMuonTaiLieuDAO766 extends DAO{
+public class PhieuMuonTaiLieuDAO766 extends DAO766{
     public PhieuMuonTaiLieuDAO766() {
         super();
     }

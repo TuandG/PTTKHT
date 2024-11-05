@@ -2,6 +2,7 @@ package com.example.libman.servlet.bandoc;
 
 import com.example.libman.dao.TaiLieuDAO766;
 import com.example.libman.model.TaiLieu766;
+import com.example.libman.utils.ServletUtils;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
@@ -25,11 +26,13 @@ public class TimKiemTaiLieuServlet766 extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String ten = req.getParameter("ten");
-        List<TaiLieu766> taiLieus = taiLieuDAO766.timTaiLieuTheoTen(ten);
+        String ten = ServletUtils.getParameter(req.getParameter("ten"), String.class);
+        TaiLieu766 taiLieuTimKiem = new TaiLieu766();
+        taiLieuTimKiem.setTen(ten);
+        List<TaiLieu766> taiLieus = taiLieuDAO766.timTaiLieuTheoTen(taiLieuTimKiem);
 //        req.setAttribute("taiLieus", taiLieus);
         HttpSession session = req.getSession();
-        session.setAttribute("taiLieus", taiLieus);
+        session.setAttribute("danhSachTaiLieu", taiLieus);
         RequestDispatcher rd = req.getRequestDispatcher("view/bandoc/gdDanhSachTaiLieu766.jsp");
         rd.forward(req, resp);
     }

@@ -4,6 +4,7 @@ import com.example.libman.dao.PhieuMuonDAO766;
 import com.example.libman.model.BanDoc766;
 import com.example.libman.model.PhieuMuon766;
 import com.example.libman.model.ThanhVien766;
+import com.example.libman.model.ThongKeDocGiaTheoSoLanMuon766;
 import com.example.libman.utils.ServletUtils;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
@@ -29,7 +30,7 @@ public class DanhSachPhieuMuonTheoDocGiaServlet766 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
-        if(session.getAttribute("thanhVienPhieuMuons") == null) {
+        if(session.getAttribute("danhSachThongKeDocGiaTheoSoLanMuon") == null) {
             resp.sendRedirect("view/quanly/gdThongKeDocGiaTheoSoLanMuon766.jsp");
             return;
         }
@@ -38,13 +39,14 @@ public class DanhSachPhieuMuonTheoDocGiaServlet766 extends HttpServlet {
             resp.sendRedirect("view/quanly/gdThongKeDocGiaSoLanMuon766.jsp");
             return;
         }
-        List<BanDoc766> thanhVienPhieuMuons = (List<BanDoc766>) session.getAttribute("thanhVienPhieuMuons");
+        List<ThongKeDocGiaTheoSoLanMuon766> thanhVienPhieuMuons = (List<ThongKeDocGiaTheoSoLanMuon766>) session.getAttribute("danhSachThongKeDocGiaTheoSoLanMuon");
         if(thanhVienPhieuMuons.isEmpty()) {
             resp.sendRedirect("view/quanly/gdThongKeDocGiaSoLanMuon766.jsp");
             return;
         }
-        List<PhieuMuon766> phieuMuons = thanhVienPhieuMuons.get(index).getPhieuMuons().stream().toList();
-        session.setAttribute("phieuMuons", phieuMuons);
+        ThongKeDocGiaTheoSoLanMuon766 thongKeDocGiaTheoSoLanMuon766 = thanhVienPhieuMuons.get(index);
+        List<PhieuMuon766> danhSachPhieuMuon = phieuMuonDAO766.timKiemPhieuMuonTheoDocGia(thongKeDocGiaTheoSoLanMuon766);
+        session.setAttribute("danhSachPhieuMuon", danhSachPhieuMuon);
         RequestDispatcher rd = req.getRequestDispatcher("/view/quanly/gdDanhSachPhieuMuonTheoDocGia766.jsp");
         rd.forward(req, resp);
     }

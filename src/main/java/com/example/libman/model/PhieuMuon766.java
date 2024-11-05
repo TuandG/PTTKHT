@@ -10,4 +10,5 @@ public class PhieuMuon766 {
     private int id;
     private LocalDate ngayMuon;
     private LocalDate hanMuon;
+    private ThanhVien766 thanhVien;
 }

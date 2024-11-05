@@ -9,11 +9,11 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.*;
 
-public class TaiLieuDAO766 extends DAO{
+public class TaiLieuDAO766 extends DAO766{
     public TaiLieuDAO766() {
         super();
     }
-    public List<TaiLieu766> timTaiLieuTheoTen(String ten){
+    public List<TaiLieu766> timTaiLieuTheoTen(TaiLieu766 taiLieuTimKiem){
         try {
             List<TaiLieu766> list = new ArrayList<TaiLieu766>();
             String sql = """
@@ -32,25 +32,18 @@ public class TaiLieuDAO766 extends DAO{
                     ht.id,
                     ht.ten,
                     ht.ho,
-                    ht.ten_dem,
-                    dc.id,
-                    dc.to_dan_pho,
-                    dc.phuong_xa,
-                    dc.quan_huyen,
-                    dc.thanh_pho,
-                    dc.tinh
+                    ht.ten_dem
                 FROM tbltailieu766 tl
                 JOIN tbltacgiatailieu766 tgtl on tgtl.tai_lieu_id = tl.id
                 JOIN tbltacgia766 tg on tg.id = tgtl.tac_gia_id
-                JOIN tbltailieutheloai766 tltl on tltl.tai_lieu_id = tl.id
+                JOIN tbltheloaitailieu766 tltl on tltl.tai_lieu_id = tl.id
                 JOIN tbltheloai766 tlo on tlo.id = tltl.the_loai_id
                 JOIN tblhoten766 ht on ht.id = tg.ho_ten_id
-                JOIN tbldiachi766 dc on dc.id = tg.dia_chi_id
                 where tl.ten like ?
                 ORDER BY tl.id
             """;
             PreparedStatement ps = this.con.prepareStatement(sql);
-            ps.setString(1, "%"+ten+"%");
+            ps.setString(1, "%"+taiLieuTimKiem.getTen()+"%");
             ResultSet rs = ps.executeQuery();
             HashMap<Integer, TaiLieu766> taiLieuMap = new HashMap<>();
             HashMap<Integer, TheLoai766> theLoaiMap = new HashMap<>();
@@ -98,16 +91,7 @@ public class TaiLieuDAO766 extends DAO{
                     hoTen.setHo(RepositoryUtils.getResultValue(rs.getObject(++index), String.class));
                     hoTen.setTenDem(RepositoryUtils.getResultValue(rs.getObject(++index), String.class));
 
-                    DiaChi766 diaChi = new DiaChi766();
-                    diaChi.setId(RepositoryUtils.getResultValue(rs.getObject(++index), Integer.class));
-                    diaChi.setToDanPho(RepositoryUtils.getResultValue(rs.getObject(++index), String.class));
-                    diaChi.setPhuongXa(RepositoryUtils.getResultValue(rs.getObject(++index), String.class));
-                    diaChi.setQuanHuyen(RepositoryUtils.getResultValue(rs.getObject(++index), String.class));
-                    diaChi.setThanhPho(RepositoryUtils.getResultValue(rs.getObject(++index), String.class));
-                    diaChi.setTinh(RepositoryUtils.getResultValue(rs.getObject(++index), String.class));
-
                     tacGia.setHoTen(hoTen);
-                    tacGia.setDiaChi(diaChi);
 
                     tacGiaMap.put(tacGiaId, tacGia);
                 }

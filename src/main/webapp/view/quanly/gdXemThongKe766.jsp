@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Thống kê</title>
-  <script src="../../script/main.js"></script>
   <style>
     body {
       margin: 0;
@@ -79,9 +78,11 @@
   <a href="#" class="stat-button">
     Thống kê nhà cung cấp theo tài liệu nhập
   </a>
-  <button onclick="quayLai()" class="back-button">
-    Quay lại
-  </button>
+  <form action="gdNhanVienQuanLyChinh766.jsp" method="get">
+    <button class="back-button">
+      Quay lại
+    </button>
+  </form>
 </div>
 </body>
 </html>

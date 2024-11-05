@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.*" %>
 <%@ page import="com.example.libman.model.TaiLieu766" %>
+<%@ page import="com.example.libman.utils.ServletUtils" %>
 <%
-    String index = request.getParameter("index");
-    Object taiLieus = session.getAttribute("taiLieus");
+    String index = ServletUtils.getParameter(request.getParameter("index"), String.class);
+    Object taiLieus = session.getAttribute("danhSachTaiLieu");
     TaiLieu766 taiLieu = null;
     if(index != null && taiLieus != null && !((ArrayList<TaiLieu766>) taiLieus).isEmpty()) {
         taiLieu = ((ArrayList<TaiLieu766>) taiLieus).get(Integer.parseInt(index));
@@ -129,9 +130,10 @@
     </tr>
 </table>
 
-<div class="button-container">
-    <button class="back-button" onclick="window.history.back()">Quay lại</button>
-</div>
-
+<form method="get" action="/libman/view/bandoc/gdDanhSachTaiLieu766.jsp">
+    <div class="button-container">
+        <button class="back-button">Quay lại</button>
+    </div>
+</form>
 </body>
 </html>

@@ -1,9 +1,7 @@
 package com.example.libman.servlet.quanly;
 
-import com.example.libman.dao.BanDocDAO766;
 import com.example.libman.dao.ThanhVienDAO766;
-import com.example.libman.model.BanDoc766;
-import com.example.libman.model.ThanhVien766;
+import com.example.libman.model.ThongKeDocGiaTheoSoLanMuon766;
 import com.example.libman.utils.ServletUtils;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletConfig;
@@ -20,11 +18,11 @@ import java.util.List;
 
 @WebServlet(value = "/danh-sach-doc-gia-theo-so-lan-muon", name = "danhSachDocGiaTheoSoLanMuonServlet766")
 public class DanhSachDocGiaTheoSoLanMuonServlet766 extends HttpServlet {
-    private BanDocDAO766 banDocDAO766;
+    private ThanhVienDAO766 thanhVienDAO;
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        banDocDAO766 = new BanDocDAO766();
+        thanhVienDAO = new ThanhVienDAO766();
     }
 
     @Override
@@ -44,9 +42,9 @@ public class DanhSachDocGiaTheoSoLanMuonServlet766 extends HttpServlet {
             url = "/view/quanly/gdThongKeDocGiaTheoSoLanMuon766.jsp";
         }
         else {
-            List<BanDoc766> thanhVienPhieuMuons = banDocDAO766.timPhieuMuonTheoThoiGian(ngayMuon, hanMuon);
+            List<ThongKeDocGiaTheoSoLanMuon766> thanhVienPhieuMuons = thanhVienDAO.thongKeDocGiaTheoSoLanMuon(ngayMuon, hanMuon);
             HttpSession session = req.getSession();
-            session.setAttribute("thanhVienPhieuMuons", thanhVienPhieuMuons);
+            session.setAttribute("danhSachThongKeDocGiaTheoSoLanMuon", thanhVienPhieuMuons);
             url = "/view/quanly/gdDanhSachDocGiaTheoSoLanMuon766.jsp";
         }
         RequestDispatcher rd = req.getRequestDispatcher(url);

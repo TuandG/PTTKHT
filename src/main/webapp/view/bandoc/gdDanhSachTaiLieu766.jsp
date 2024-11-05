@@ -92,7 +92,7 @@
 
 <h1>Danh Sách Tài Liệu</h1>
 <c:choose>
-  <c:when test="${sessionScope.get('taiLieus') != null}">
+  <c:when test="${sessionScope.get('danhSachTaiLieu') != null}">
     <table class="table-container">
     <tr>
       <th>Mã tài liệu</th>
@@ -101,14 +101,14 @@
       <th>Thể loại</th>
       <th>Hành động</th>
     </tr>
-    <c:forEach items="${sessionScope.get('taiLieus')}" var="x" varStatus="status">
+    <c:forEach items="${sessionScope.get('danhSachTaiLieu')}" var="x" varStatus="status">
       <tr>
         <td>${x.getId()}</td>
         <td>${x.getTen()}</td>
         <td>${x.getTenTacGia()}</td>
         <td>${x.getTenTheLoai()}</td>
         <td>
-          <form action="view/bandoc/gdChiTietTaiLieu766.jsp" method="get">
+          <form action="/libman/view/bandoc/gdChiTietTaiLieu766.jsp" method="get">
             <input type="hidden" name="index" value="${status.index}"/>
             <button class="view-button">Xem</button>
           </form>
@@ -121,10 +121,10 @@
     </table>
   </c:when>
   <c:otherwise>
-    <%response.sendRedirect("gdTimKiemTaiLieu766.jsp");%>
+    <%response.sendRedirect("/libman/view/bandoc/gdTimKiemTaiLieu766.jsp");%>
   </c:otherwise>
 </c:choose>
-<form action='view/bandoc/gdTimKiemTaiLieu766.jsp' method="get" class="button-container">
+<form action='/libman/view/bandoc/gdTimKiemTaiLieu766.jsp' method="get" class="button-container">
   <button class="back-button">Quay lại</button>
 </form>
 

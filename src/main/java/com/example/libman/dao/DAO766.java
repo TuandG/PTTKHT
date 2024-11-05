@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class  DAO {
+public class  DAO766 {
     protected Connection con;
-    public DAO() {
+    public DAO766() {
         String username = "admin";
         String password = "admin";
         String url = "jdbc:postgresql://localhost:5432/libman";

@@ -89,7 +89,7 @@
 
 <h1>Danh Sách Tài Liệu</h1>
 <c:choose>
-    <c:when test="${sessionScope.get('thanhVienPhieuMuons') != null}">
+    <c:when test="${sessionScope.get('danhSachThongKeDocGiaTheoSoLanMuon') != null}">
         <table class="table-container">
             <tr>
                 <th>Mã độc giả </th>
@@ -97,11 +97,11 @@
                 <th>Số lần mượn</th>
                 <th>Hành động</th>
             </tr>
-            <c:forEach items="${sessionScope.get('thanhVienPhieuMuons')}" var="x" varStatus="status">
+            <c:forEach items="${sessionScope.get('danhSachThongKeDocGiaTheoSoLanMuon')}" var="x" varStatus="status">
                 <tr>
                     <td>${x.getId()}</td>
                     <td>${x.getHoTen().toString()}</td>
-                    <td>${x.getPhieuMuons().size()}</td>
+                    <td>${x.getSoPhieuMuon()}</td>
                     <td>
                         <form action="/libman/danh-sach-phieu-muon-theo-doc-gia" method="post">
                             <input type="hidden" name="index" value="${status.index}"/>
@@ -116,7 +116,7 @@
         </table>
     </c:when>
     <c:otherwise>
-        <%response.sendRedirect("view/quanly/gdThongKeDocGiaTheoSoLanMuon766.jsp");%>
+        <%response.sendRedirect("/libman/view/quanly/gdThongKeDocGiaTheoSoLanMuon766.jsp");%>
     </c:otherwise>
 </c:choose>
 <form action='/libman/view/quanly/gdThongKeDocGiaTheoSoLanMuon766.jsp' method="get" class="button-container">

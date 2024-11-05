@@ -116,7 +116,7 @@
     </div>
     <div class="buttons">
         <button type="submit" class="search-button">Tìm kiếm</button>
-        <button onclick="history.back()" class="back-button">Quay lại</button>
+        <a href="/libman/view/quanly/gdXemThongKe766.jsp" class="back-button">Quay lại</a>
     </div>
 </div>
 </form>

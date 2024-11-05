@@ -39,14 +39,14 @@ public class ChiTietPhieuMuonServlet766 extends HttpServlet {
             return;
         }
         HttpSession session = req.getSession();
-        if(session.getAttribute("phieuMuons") == null) {
+        if(session.getAttribute("danhSachPhieuMuon") == null) {
             resp.sendRedirect("view/quanly/gdDanhSachPhieuMuonTheoDocGia766.jsp");
             return;
         }
-        List<PhieuMuon766> phieuMuons = (List<PhieuMuon766>) session.getAttribute("phieuMuons");
+        List<PhieuMuon766> phieuMuons = (List<PhieuMuon766>) session.getAttribute("danhSachPhieuMuon");
         PhieuMuon766 phieuMuon = phieuMuons.get(index);
         List<PhieuMuonTaiLieu766> phieuMuonTaiLieu = phieuMuonTaiLieuDAO766.timChiTietPhieuMuonTaiLieu(phieuMuon);
-        session.setAttribute("chiTietPhieuMuons", phieuMuonTaiLieu);
+        session.setAttribute("danhSachPhieuMuonTaiLieu", phieuMuonTaiLieu);
         RequestDispatcher rd = req.getRequestDispatcher("/view/quanly/gdChiTietPhieuMuon766.jsp");
         rd.forward(req, resp);
     }

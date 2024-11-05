@@ -22,6 +22,9 @@ public class ServletUtils {
         else if(type.equals(Float.class)){
             return (T) Float.valueOf(parameter);
         }
+        else if(type.equals(String.class)){
+            return (T) parameter;
+        }
         throw new UnsupportedOperationException("Unsupported type");
     }
 }

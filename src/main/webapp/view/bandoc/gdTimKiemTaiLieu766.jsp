@@ -99,8 +99,9 @@
         <button class="search-button">&#128269;</button>
     </form>
 </div>
-
-<button class="back-button" onclick="quayLai()">Quay lại</button>
+<form action="/libman/view/bandoc/gdDocGiaChinh766.jsp" method="get">
+<button class="back-button">Quay lại</button>
+</form>
 
 </body>
 </html>
